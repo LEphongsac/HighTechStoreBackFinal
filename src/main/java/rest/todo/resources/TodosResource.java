@@ -2,10 +2,7 @@ package rest.todo.resources;
 
 
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +20,9 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 
 import rest.todo.ConnectionDB;
+import rest.todo.dao.ArticleDao;
 import rest.todo.dao.TodoDao;
+import rest.todo.model.Article;
 import rest.todo.model.Todo;
 
 
@@ -41,11 +40,16 @@ public class TodosResource {
     // Return the list of todos to the user in the browser
     @GET
     @Produces(MediaType.TEXT_XML)
-    public List<Todo> getTodosBrowser() {
+    public List<Article> getAllArticles(){
+        ArticleDao a = new ArticleDao();
+        List<Article> articles = a.getAllArticle();
+        return articles;
+    }
+   /*public List<Todo> getTodosBrowser() {
         List<Todo> todos = new ArrayList<Todo>();
         todos.addAll(TodoDao.instance.getModel().values());
         return todos;
-    }
+    }*/
 
     // Return the list of todos for applications
     @GET
