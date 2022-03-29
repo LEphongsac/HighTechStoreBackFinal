@@ -1,11 +1,17 @@
 package rest.todo.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="ApplicationConstant")
 public class Cart {
     private int id;
     private int idUser;
     private int idProduct;
     private int quantity;
 
+    public Cart(){
+
+    }
     public Cart(int id, int idUser, int idProduct, int quantity) {
         this.id = id;
         this.idUser = idUser;

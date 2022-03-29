@@ -1,5 +1,8 @@
 package rest.todo.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="ApplicationConstant")
 public class User {
     private int id;
     private String username;
@@ -8,6 +11,7 @@ public class User {
     private String lastname;
     private String token;
 
+    public User(){}
     public int getId() {
         return id;
     }

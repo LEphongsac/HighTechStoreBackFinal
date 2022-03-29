@@ -3,6 +3,8 @@ package rest.todo.dao;
 import rest.todo.ConnectionDB;
 import rest.todo.model.Article;
 
+import javax.ws.rs.core.Request;
+import javax.ws.rs.core.UriInfo;
 import java.sql.*;
 import java.util.*;
 
@@ -30,6 +32,34 @@ public class ArticleDao {
             e.printStackTrace();
         }
         return articles;
+    }
+
+    public Article getArticle(UriInfo uriInfo, Request request, int id){
+        Connection connection = ConnectionDB.getDBConnection();
+        Statement statement;
+        Article article = null;
+        try {
+            PreparedStatement select = connection.prepareStatement("SELECT * FROM article WHERE id ="+id);
+            ResultSet rs = select.executeQuery();
+            // Extract data from result set
+            while (rs.next()) {
+                Article a = new Article(
+                        rs.getString("label"),
+                        rs.getString("marque"),
+                        rs.getString("description"),
+                        rs.getString("photo"),
+                        rs.getInt("idCategorie"),
+                        rs.getInt("idUser"),
+                        rs.getInt("price"));
+                article = a;
+            }
+        } catch (SQLException e) {
+            e.getMessage();
+            e.printStackTrace();
+        }
+        if (article == null)
+            throw new RuntimeException("Get: Article with " + id + " not found");
+        return article;
     }
 
     //insert article

@@ -1,5 +1,8 @@
 package rest.todo.model;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="ApplicationConstant")
 public class Article {
     private int id;
     private String label;
@@ -10,6 +13,9 @@ public class Article {
     private int idUser;
     private int price;
 
+    public Article() {
+    }
+
     public Article(String label, String marque, String description, String photo, int idCategorie, int idUser, int price) {
         this.label = label;
         this.marque = marque;
@@ -18,16 +24,6 @@ public class Article {
         this.idCategorie = idCategorie;
         this.idUser = idUser;
         this.price = price;
-    }
-
-    public Article(int id, String marque, String description, String photo, int idCategorie, int idUser, int price) {
-        this.id=id;
-        this.marque=marque;
-        this.description=description;
-        this.photo=photo;
-        this.idCategorie=idCategorie;
-        this.idUser=idUser;
-        this.price=price;
     }
 
     public int getId() {
