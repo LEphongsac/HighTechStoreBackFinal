@@ -2,20 +2,22 @@ package rest.todo.dao;
 
 import rest.todo.ConnectionDB;
 import rest.todo.model.Article;
+import rest.todo.model.Categorie;
 
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 import java.sql.*;
 import java.util.*;
 
-public class ArticleDao {
+
+public class ArticleDao{
     //get all article
     private static Connection CONNEXION = ConnectionDB.getDBConnection();
-    public List<Article> getAllArticle() {
+    public List<Article> getAllArticle(int idCategorie) {
         List<Article> articles = new ArrayList<Article>();
 
         try {
-            PreparedStatement select = CONNEXION.prepareStatement("select * from article");
+            PreparedStatement select = CONNEXION.prepareStatement("select * from article where idCategorie =" + idCategorie);
             ResultSet rSelect = select.executeQuery();
             while (rSelect.next()) {
                 Article a = new Article(
