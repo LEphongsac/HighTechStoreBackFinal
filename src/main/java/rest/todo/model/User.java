@@ -9,7 +9,7 @@ public class User {
     private String password;
     private String firstname;
     private String lastname;
-    private String token;
+    private String role;
 
     public User(){}
     public int getId() {
@@ -53,10 +53,10 @@ public class User {
     }
 
     public String getToken() {
-        return token;
+        return role;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setToken(String role) {
+        this.role = role;
     }
 }
