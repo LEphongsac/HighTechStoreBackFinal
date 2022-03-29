@@ -9,9 +9,19 @@ public class User {
     private String password;
     private String firstname;
     private String lastname;
-    private String role;
+    private int role;
 
     public User(){}
+
+    public User(int id, String username, String password, String firstname, String lastname, int role) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role=role;
+    }
+
     public int getId() {
         return id;
     }
@@ -52,11 +62,11 @@ public class User {
         this.lastname = lastname;
     }
 
-    public String getToken() {
+    public int getRole() {
         return role;
     }
 
-    public void setToken(String role) {
+    public void setRole(int role) {
         this.role = role;
     }
 }

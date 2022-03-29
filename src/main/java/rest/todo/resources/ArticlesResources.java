@@ -1,10 +1,7 @@
 package rest.todo.resources;
 
-import rest.todo.ConnectionDB;
 import rest.todo.dao.ArticleDao;
-import rest.todo.dao.TodoDao;
 import rest.todo.model.Article;
-import rest.todo.model.Todo;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
@@ -13,11 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 
 @Path("/articles")
@@ -29,11 +22,21 @@ public class ArticlesResources {
     @Context
     Request request;
 
+    //list article
+    @GET
+    @Path("/all}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Article> getAllArticles() {
+        List<Article> articleList = articleDao.getAllArticle();
+        return articleList;
+    }
+
+    //list article selon categorie
     @GET
     @Path("list/{idCategorie}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Article> getArticles(@PathParam("idCategorie") int idCategorie) {
-        List<Article> articleList = articleDao.getAllArticle(idCategorie);
+        List<Article> articleList = articleDao.getAllArticleByCategorie(idCategorie);
         return articleList;
     }
 
