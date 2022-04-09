@@ -43,13 +43,12 @@ public class CartDao {
                 + " (idUser,idProduct)" + " values (?,?)";
         PreparedStatement select = CONNEXION.prepareStatement(sql);
         select.setInt(1, a.getIdUser());
-        select.setInt(2, a.getId());
+        select.setInt(2,a.getId());
         select.executeUpdate();
     }
     //delete article from cart
     public void deleteFromCart(int idProduct) throws SQLException{
-        String sql = "delete from Cart where idProduct =" + idProduct;
-        PreparedStatement delete = CONNEXION.prepareStatement(sql);
+        PreparedStatement delete = CONNEXION.prepareStatement("delete from Cart where Cart.idProduct = " + idProduct);
         delete.executeUpdate();
     }
 }

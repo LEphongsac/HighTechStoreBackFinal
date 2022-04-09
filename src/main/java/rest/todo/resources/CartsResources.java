@@ -24,30 +24,25 @@ public class CartsResources {
     @Context
     Request request;
     @GET
-   @Path("listproduct/{idUser}")
-   @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Path("listproduct/{idUser}")
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Article> getArticlesOfCart(@PathParam("idUser") int idUser) {
-      List<Article> articleList = cartDao.getAllProductOfCart(idUser);
-       return articleList;
+        List<Article> articleList = cartDao.getAllProductOfCart(idUser);
+        return articleList;
     }
 
     //Insertion de produit dans le panier
-    @POST
-    @Path("/add/{label}/{marque}/{description}/{photo}/{idCategorie}/{idUser}/{price}")
-    @Produces(MediaType.TEXT_HTML)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newArticle(@PathParam("label") String label,
-                           @PathParam("marque") String marque,
-                           @PathParam("description") String description,
-                           @PathParam("photo") String photo,
-                           @PathParam("idCategorie") int idCategorie,
-                           @PathParam("idUser") int idUser,
-                           @PathParam("price") int price,
+    @GET
+    @Path("/add/{idProduct}")
+    @Consumes({MediaType.APPLICATION_JSON})
+    @Produces({MediaType.APPLICATION_JSON})
+    public void newArticle(@PathParam("idProduct") int idProd,
                            @Context HttpServletResponse servletResponse) throws IOException, SQLException {
-        Article article = new Article(label,marque, description,photo,idCategorie,idUser,price);
+        Article article = articleDao.getArticle(uriInfo,request,idProd);
         cartDao.insertIntoCart(article);
     }
-    @DELETE
+
+    @GET
     @Path("/delete/{idProduct}")
     public void deleteArticleFromCart(@PathParam("idProduct") int id) throws IOException, SQLException{
         cartDao.deleteFromCart(id);
@@ -62,3 +57,4 @@ public class CartsResources {
         return new CartResource(uriInfo, request, id);
     }
 }
+
