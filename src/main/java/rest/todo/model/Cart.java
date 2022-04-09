@@ -12,11 +12,9 @@ public class Cart {
     public Cart(){
 
     }
-    public Cart(int id, int idUser, int idProduct, int quantity) {
-        this.id = id;
+    public Cart( int idUser, int idProduct) {
         this.idUser = idUser;
         this.idProduct = idProduct;
-        this.quantity = quantity;
     }
 
     public int getId() {
@@ -28,7 +26,7 @@ public class Cart {
     }
 
     public int getIdUser() {
-        return idUser;
+        return this.idUser;
     }
 
     public void setIdUser(int idUser) {
@@ -36,7 +34,7 @@ public class Cart {
     }
 
     public int getIdProduct() {
-        return idProduct;
+        return this.idProduct;
     }
 
     public void setIdProduct(int idProduct) {

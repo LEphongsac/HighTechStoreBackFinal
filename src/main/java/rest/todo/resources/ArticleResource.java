@@ -1,6 +1,5 @@
 package rest.todo.resources;
 
-import rest.todo.ConnectionDB;
 import rest.todo.dao.ArticleDao;
 import rest.todo.dao.TodoDao;
 import rest.todo.model.Article;
@@ -9,8 +8,7 @@ import rest.todo.model.Todo;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 import javax.xml.bind.JAXBElement;
-import java.sql.*;
-import java.util.List;
+import java.sql.SQLException;
 
 public class ArticleResource {
     @Context
@@ -29,9 +27,9 @@ public class ArticleResource {
     //Application integration
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public String getArticle() {
+    public Article getArticle() {
         Article a = articleDao.getArticle(uriInfo,request,id) ;
-        return a.toString();
+        return a;
     }
 
     // for the browser
@@ -50,10 +48,8 @@ public class ArticleResource {
     }
 
     @DELETE
-    public void deleteTodo() {
-        Todo c = TodoDao.instance.getModel().remove(id);
-        if (c == null)
-            throw new RuntimeException("Delete: Todo with " + id + " not found");
+    public void deleteArticle() throws SQLException {
+        articleDao.deleteArticle(id);
     }
 
     private Response putAndGetResponse(Todo todo) {
