@@ -37,14 +37,7 @@ public class TodosResource {
     @Context
     Request request;
 
-    // Return the list of todos to the user in the browser
-    @GET
-    @Produces(MediaType.TEXT_XML)
-    public List<Article> getAllArticles(){
-        ArticleDao a = new ArticleDao();
-        List<Article> articles = a.getAllArticle();
-        return articles;
-    }
+
    /*public List<Todo> getTodosBrowser() {
         List<Todo> todos = new ArrayList<Todo>();
         todos.addAll(TodoDao.instance.getModel().values());

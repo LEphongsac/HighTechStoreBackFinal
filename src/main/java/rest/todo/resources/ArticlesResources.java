@@ -31,7 +31,7 @@ public class ArticlesResources {
 
     @GET
     @Path("list/{idCategorie}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    @Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public List<Article> getArticles(@PathParam("idCategorie") int idCategorie) {
         List<Article> articleList = articleDao.getAllArticle(idCategorie);
         return articleList;
