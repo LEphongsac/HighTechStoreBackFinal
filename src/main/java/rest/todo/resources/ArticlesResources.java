@@ -5,10 +5,8 @@ import rest.todo.model.Article;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.ws.rs.*;
-import javax.ws.rs.core.Context;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.UriInfo;
+import javax.ws.rs.container.ContainerResponseContext;
+import javax.ws.rs.core.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,9 +24,11 @@ public class ArticlesResources {
     @GET
     @Path("/all}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<Article> getAllArticles() {
+    public Response getAllArticles() {
         List<Article> articleList = articleDao.getAllArticle();
-        return articleList;
+        return Response.ok(articleList)
+                .header("Access-Control-Allow-Origin", "*")
+                .build();
     }
 
     //list article selon categorie

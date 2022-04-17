@@ -1,4 +1,4 @@
-package rest.todo.resources;
+/*package rest.todo.resources;
 
 import rest.todo.dao.UserDao;
 import rest.todo.model.User;
@@ -43,4 +43,4 @@ public class UsersResources {
     public ArticleResource getArticle(@PathParam("iduser") int id) {
         return new ArticleResource(uriInfo, request, id);
     }
-}
+}*/

@@ -1,9 +1,9 @@
-package rest.todo.resources;
+//package rest.todo.resources;
 
-import rest.todo.dao.UserDao;
-import rest.todo.model.User;
+//import rest.todo.dao.UserDao;
+//import rest.todo.model.User;
 
-import javax.ws.rs.DELETE;
+/*import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
@@ -46,4 +46,4 @@ public class UserResource {
     public void deleteUser() throws SQLException {
         userDao.deleteUser(id);
     }
-}
+}*/

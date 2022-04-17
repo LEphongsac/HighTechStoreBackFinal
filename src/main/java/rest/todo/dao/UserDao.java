@@ -1,4 +1,4 @@
-package rest.todo.dao;
+/*package rest.todo.dao;
 
 import rest.todo.ConnectionDB;
 import rest.todo.model.Article;
@@ -87,4 +87,4 @@ public class UserDao {
         select.executeUpdate();
     }
 
-}
+}*/

@@ -16,6 +16,17 @@ public class Article {
     public Article() {
     }
 
+    public Article(int id, String label, String marque, String description, String photo, int idCategorie, int idUser, int price) {
+        this.id = id;
+        this.label = label;
+        this.marque = marque;
+        this.description = description;
+        this.photo = photo;
+        this.idCategorie = idCategorie;
+        this.idUser = idUser;
+        this.price = price;
+    }
+
     public Article(String label, String marque, String description, String photo, int idCategorie, int idUser, int price) {
         this.label = label;
         this.marque = marque;
