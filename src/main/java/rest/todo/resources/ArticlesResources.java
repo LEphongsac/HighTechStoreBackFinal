@@ -45,7 +45,7 @@ public class ArticlesResources {
     @Path("/add/{label}/{marque}/{description}/{photo}/{idCategorie}/{idUser}/{price}")
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newArticle(@PathParam("label") String label,
+    public boolean ewArticle(@PathParam("label") String label,
                         @PathParam("marque") String marque,
                         @PathParam("description") String description,
                         @PathParam("photo") String photo,
@@ -54,7 +54,7 @@ public class ArticlesResources {
                         @PathParam("price") int price,
                         @Context HttpServletResponse servletResponse) throws IOException, SQLException {
         Article article = new Article(label,marque, description,photo,idCategorie,idUser,price);
-        articleDao.insertArticle(article);
+       return  articleDao.insertArticle(article);
     }
 
     // Defines that the next path parameter after todos is

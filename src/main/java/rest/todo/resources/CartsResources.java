@@ -38,21 +38,21 @@ public class CartsResources {
     @Path("/add/{idProduct}/{idUser}")
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public void newArticle(@PathParam("idProduct") int idProd,@PathParam("idUser") int idUser,
+    public boolean newArticle(@PathParam("idProduct") int idProd,@PathParam("idUser") int idUser,
                            @Context HttpServletResponse servletResponse) throws IOException, SQLException {
         Cart cart = new Cart(idUser,idProd);
-        cartDao.insertIntoCart(cart);
+       return  cartDao.insertIntoCart(cart);
     }
 
     @GET
     @Path("/delete/{idProduct}")
-    public void deleteArticleFromCart(@PathParam("idProduct") int id) throws IOException, SQLException{
-        cartDao.deleteFromCart(id);
+    public boolean deleteArticleFromCart(@PathParam("idProduct") int id) throws  SQLException{
+        return cartDao.deleteFromCart(id);
     }
     @GET
-    @Path("/delete/{idUser}")
-    public void deleteArticleFromCartByIdUser(@PathParam("idUser") int id) throws IOException, SQLException{
-        cartDao.deleteFromCartByIdUser(id);
+    @Path("/deleteAll/{idUser}")
+    public boolean deleteArticleFromCartByIdUser(@PathParam("idUser") int id) throws SQLException{
+        return cartDao.deleteFromCartByIdUser(id);
     }
     // Defines that the next path parameter after todos is
     // treated as a parameter and passed to the TodoResources
@@ -61,6 +61,12 @@ public class CartsResources {
     @Path("{idcart}")
     public CartResource getArticle(@PathParam("idcart") int id) {
         return new CartResource(uriInfo, request, id);
+
+    }
+    @GET
+    @Path("/totalPrice/{idUser}")
+    public Integer totalPrice(@PathParam("idUser") int idUser) {
+        return cartDao.totalPrice(idUser);
     }
 }
 

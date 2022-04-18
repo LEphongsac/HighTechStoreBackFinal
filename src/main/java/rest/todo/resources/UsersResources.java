@@ -1,4 +1,4 @@
-/*package rest.todo.resources;
+package rest.todo.resources;
 
 import rest.todo.dao.UserDao;
 import rest.todo.model.User;
@@ -13,7 +13,7 @@ import javax.ws.rs.core.Request;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
-@Path("/articles")
+@Path("/user")
 public class UsersResources {
     UserDao userDao = new UserDao();
 
@@ -26,21 +26,20 @@ public class UsersResources {
     @GET
     @Path("/all}")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public List<User> getAllArticles() {
-        List<User> userList = userDao.getAllUser();
+    public List<User> getAllUsers() {
+        List<User> userList = userDao.getAllUsers();
         return userList;
     }
 
 
     @GET
-    @Path("/login/{username}/{password}")
-    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
-    public int getRoleUser(@PathParam("username") String username, @PathParam("password") String password){
-        return userDao.authentication(username,password);
+    @Path("/login/{email}/{password}")
+    public boolean login (@PathParam("email") String email, @PathParam("password") String password){
+        return userDao.login(email,password);
     }
 
     @Path("{iduser}")
     public ArticleResource getArticle(@PathParam("iduser") int id) {
         return new ArticleResource(uriInfo, request, id);
     }
-}*/
+}

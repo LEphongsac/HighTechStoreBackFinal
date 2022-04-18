@@ -92,7 +92,8 @@ public class ArticleDao{
     }
 
     //insert article
-    public void insertArticle(Article article) throws SQLException {
+    public boolean insertArticle(Article article) throws SQLException {
+        try {
         String sql = "insert into article "
                 + " (label,marque, description,photo,idCategorie,idUser,price)" + " values (?,?,?,?,?,?,?)";
         PreparedStatement select = CONNEXION.prepareStatement(sql);
@@ -104,6 +105,10 @@ public class ArticleDao{
         select.setInt(6, article.getIdUser());
         select.setInt(7, article.getPrice());
         select.executeUpdate();
+        }catch(Exception e){
+            return false;
+        }
+        return true;
     }
 
     public void deleteArticle(int idArticle) throws SQLException {

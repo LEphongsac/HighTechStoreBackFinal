@@ -12,7 +12,14 @@ public class Cart {
     public Cart(){
 
     }
-    public Cart( int idUser, int idProduct) {
+
+    public Cart(int idUser, int idProduct, int quantity) {
+        this.idUser = idUser;
+        this.idProduct = idProduct;
+        this.quantity = quantity;
+    }
+
+    public Cart(int idUser, int idProduct) {
         this.idUser = idUser;
         this.idProduct = idProduct;
     }
