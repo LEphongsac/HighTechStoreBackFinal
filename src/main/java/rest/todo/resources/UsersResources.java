@@ -34,7 +34,7 @@ public class UsersResources {
 
     @GET
     @Path("/login/{email}/{password}")
-    public boolean login (@PathParam("email") String email, @PathParam("password") String password){
+    public User login (@PathParam("email") String email, @PathParam("password") String password){
         return userDao.login(email,password);
     }
 

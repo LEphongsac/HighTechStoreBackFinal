@@ -36,8 +36,6 @@ public class CartsResources {
     //Insertion de produit dans le panier
     @GET
     @Path("/add/{idProduct}/{idUser}")
-    @Produces(MediaType.TEXT_HTML)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
     public boolean newArticle(@PathParam("idProduct") int idProd,@PathParam("idUser") int idUser,
                            @Context HttpServletResponse servletResponse) throws IOException, SQLException {
         Cart cart = new Cart(idUser,idProd);

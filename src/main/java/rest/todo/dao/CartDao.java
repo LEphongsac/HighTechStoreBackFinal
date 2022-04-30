@@ -26,10 +26,11 @@ public class CartDao {
         List<Article> Carts = new ArrayList<Article>();
 
         try {
-            PreparedStatement select = CONNEXION.prepareStatement("select article.label, article.marque,article.price,article.description , article.photo, article.idCategorie,article.idUser from cart, article where cart.idUser= article.idUser and Cart.idUser=" +idUser);
+            PreparedStatement select = CONNEXION.prepareStatement("select * from article  , cart where article.id = cart.idProduct and cart.idUser ="+idUser);
             ResultSet rSelect = select.executeQuery();
             while (rSelect.next()) {
                 Article a = new Article(
+                        rSelect.getInt("id"),
                         rSelect.getString("label"),
                         rSelect.getString("marque"),
                         rSelect.getString("description"),

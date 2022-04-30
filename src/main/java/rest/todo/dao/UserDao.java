@@ -23,6 +23,7 @@ public class UserDao {
             ResultSet rSelect = select.executeQuery();
             while (rSelect.next()) {
                 User a = new User(
+                        rSelect.getInt("id"),
                         rSelect.getString("email"),
                         rSelect.getString("password"),
                         rSelect.getString("firstname"),
@@ -37,7 +38,7 @@ public class UserDao {
 
     }
     //getUsersById
-    public User getUserById(UriInfo uriInfo, Request request, int idUser){
+    public User getUserById(int idUser){
         User user = null;
         try {
             PreparedStatement select = CONNEXION.prepareStatement("SELECT * FROM users WHERE id ="+idUser);
@@ -62,14 +63,14 @@ public class UserDao {
     }
 
 
-    public boolean login(String username, String password){
+    public User login(String username, String password){
         List<User> listUser = getAllUsers() ;
         for(User user:listUser){
             if(user.getEmail().equalsIgnoreCase(username) && user.getPassword().equals(password)){
-                return true;
+                return findUserByEmail(username);
             }
         }
-        return false;
+        return null;
     }
 
     public User findUserByEmail(String email) {

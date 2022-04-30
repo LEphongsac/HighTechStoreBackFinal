@@ -33,7 +33,7 @@ public class UserResource {
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public User getUser() {
-        User a = userDao.getUserById(uriInfo,request,id) ;
+        User a = userDao.getUserById(id) ;
         return a;
     }
 
@@ -41,7 +41,7 @@ public class UserResource {
     @GET
     @Produces(MediaType.TEXT_XML)
     public String getUserHTML() {
-        User a = userDao.getUserById(uriInfo,request,id) ;
+        User a = userDao.getUserById(id) ;
         return a.toString();
     }
 
