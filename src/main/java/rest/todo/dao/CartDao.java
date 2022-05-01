@@ -107,7 +107,7 @@ public class CartDao {
             for (Cart cart : listCart) {
                 if (cart.getIdUser() == idUser) {
                     //chercher le produit de cette utilisateur
-                    Article article = articleDao.getArticle(uriInfo,request,cart.getIdProduct());
+                    Article article = articleDao.getArticle(cart.getIdProduct());
                     price +=article.getPrice();
                 }
             }

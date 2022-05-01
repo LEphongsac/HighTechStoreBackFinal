@@ -28,7 +28,7 @@ public class ArticleResource {
     @GET
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public Article getArticle() {
-        Article a = articleDao.getArticle(uriInfo,request,id) ;
+        Article a = articleDao.getArticle(id) ;
         return a;
     }
 
@@ -36,7 +36,7 @@ public class ArticleResource {
     @GET
     @Produces(MediaType.TEXT_XML)
     public String getArticleHTML() {
-        Article a = articleDao.getArticle(uriInfo,request,id) ;
+        Article a = articleDao.getArticle(id) ;
         return a.toString();
     }
 

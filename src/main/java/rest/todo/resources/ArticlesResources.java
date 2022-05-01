@@ -39,11 +39,18 @@ public class ArticlesResources {
         List<Article> articleList = articleDao.getAllArticleByCategorie(idCategorie);
         return articleList;
     }
-    @POST
-    @Path("update")
+    @GET
+    @Path("/update/{idArticle}/{label}/{marque}/{description}/{idCategorie}/{idUser}/{price}")
     @Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
-    public Article UpdateArticle( Article article) {
-        return articleDao.updateArticle(article,article.getId());
+    public Article UpdateArticle( @PathParam("idArticle") int idArticle,
+                                  @PathParam("label") String label,
+                                  @PathParam("marque") String marque,
+                                  @PathParam("description") String description,
+                                  @PathParam("idCategorie") int idCategorie,
+                                  @PathParam("idUser") int idUser,
+                                  @PathParam("price") int price) throws SQLException {
+        Article article = new Article(label,marque,description,"",idCategorie,idUser,price);
+        return articleDao.updateArticle(article,idArticle);
     }
 
     //Insertion
@@ -51,7 +58,7 @@ public class ArticlesResources {
     @Path("/add/{label}/{marque}/{description}/{photo}/{idCategorie}/{idUser}/{price}")
     @Produces(MediaType.TEXT_HTML)
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public boolean ewArticle(@PathParam("label") String label,
+    public Article newArticle(@PathParam("label") String label,
                         @PathParam("marque") String marque,
                         @PathParam("description") String description,
                         @PathParam("photo") String photo,

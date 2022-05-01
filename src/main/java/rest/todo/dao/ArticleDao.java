@@ -62,7 +62,7 @@ public class ArticleDao{
     }
 
     //get article by id
-    public Article getArticle(UriInfo uriInfo, Request request, int id){
+    public Article getArticle( int id){
         Connection connection = ConnectionDB.getDBConnection();
         Statement statement;
         Article article = null;
@@ -92,7 +92,7 @@ public class ArticleDao{
     }
 
     //insert article
-    public boolean insertArticle(Article article) throws SQLException {
+    public Article insertArticle(Article article) throws SQLException {
         try {
         String sql = "insert into article "
                 + " (label,marque, description,photo,idCategorie,idUser,price)" + " values (?,?,?,?,?,?,?)";
@@ -106,9 +106,9 @@ public class ArticleDao{
         select.setInt(7, article.getPrice());
         select.executeUpdate();
         }catch(Exception e){
-            return false;
+            return null;
         }
-        return true;
+        return getArticle(article.getId());
     }
 
     public void deleteArticle(int idArticle) throws SQLException {
@@ -116,9 +116,9 @@ public class ArticleDao{
         select.executeUpdate();
     }
 
-    public void updateArticle(Article article,int idArticle) throws SQLException{
+    public Article updateArticle(Article article,int idArticle) throws SQLException{
         String sql = "update article set"
-                + " (label = ? ,marque=?, description=?,photo=?,idCategorie=?,idUser=?,price=?) where id ="+idArticle;
+                + " label = ? ,marque = ?, description = ?,photo = ?,idCategorie = ?,idUser = ?,price = ? where id ="+idArticle;
         PreparedStatement select = CONNEXION.prepareStatement(sql);
         select.setString(1, article.getLabel());
         select.setString(2, article.getMarque());
@@ -128,5 +128,7 @@ public class ArticleDao{
         select.setInt(6, article.getIdUser());
         select.setInt(7, article.getPrice());
         select.executeUpdate();
+
+        return getArticle(idArticle);
     }
 }
