@@ -39,6 +39,12 @@ public class ArticlesResources {
         List<Article> articleList = articleDao.getAllArticleByCategorie(idCategorie);
         return articleList;
     }
+    @POST
+    @Path("update")
+    @Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
+    public Article UpdateArticle( Article article) {
+        return articleDao.updateArticle(article,article.getId());
+    }
 
     //Insertion
     @GET
