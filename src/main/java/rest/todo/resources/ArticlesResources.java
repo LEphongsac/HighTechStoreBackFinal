@@ -75,4 +75,9 @@ public class ArticlesResources {
     public ArticleResource getArticle(@PathParam("idarticle") int id) {
         return new ArticleResource(uriInfo, request, id);
     }
+    @GET
+    @Path("/delete/{idArticle}")
+    public boolean deleteArticle(@PathParam("idArticle") int idArticle) throws  SQLException{
+        return  articleDao.deleteArticle(idArticle);
+    }
 }

@@ -2,10 +2,7 @@ package rest.todo.dao;
 
 import rest.todo.ConnectionDB;
 import rest.todo.model.Article;
-import rest.todo.model.Categorie;
 
-import javax.ws.rs.core.Request;
-import javax.ws.rs.core.UriInfo;
 import java.sql.*;
 import java.util.*;
 
@@ -111,9 +108,14 @@ public class ArticleDao{
         return true;
     }
 
-    public void deleteArticle(int idArticle) throws SQLException {
+    public boolean deleteArticle(int idArticle) throws SQLException {
+        try{
         PreparedStatement select = CONNEXION.prepareStatement("delete from article where id = " + idArticle);
         select.executeUpdate();
+        }catch(Exception e){
+            return false;
+        }
+            return true;
     }
 
     public Article updateArticle(Article article,int idArticle) throws SQLException{
