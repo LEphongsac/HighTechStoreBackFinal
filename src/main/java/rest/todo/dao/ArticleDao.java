@@ -92,7 +92,7 @@ public class ArticleDao{
     }
 
     //insert article
-    public Article insertArticle(Article article) throws SQLException {
+    public Boolean insertArticle(Article article) throws SQLException {
         try {
         String sql = "insert into article "
                 + " (label,marque, description,photo,idCategorie,idUser,price)" + " values (?,?,?,?,?,?,?)";
@@ -106,9 +106,9 @@ public class ArticleDao{
         select.setInt(7, article.getPrice());
         select.executeUpdate();
         }catch(Exception e){
-            return null;
+            return false;
         }
-        return getArticle(article.getId());
+        return true;
     }
 
     public void deleteArticle(int idArticle) throws SQLException {

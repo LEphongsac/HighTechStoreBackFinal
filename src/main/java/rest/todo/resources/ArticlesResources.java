@@ -55,18 +55,15 @@ public class ArticlesResources {
 
     //Insertion
     @GET
-    @Path("/add/{label}/{marque}/{description}/{photo}/{idCategorie}/{idUser}/{price}")
-    @Produces(MediaType.TEXT_HTML)
-    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
-    public Article newArticle(@PathParam("label") String label,
+    @Path("/add/{label}/{marque}/{description}/{idCategorie}/{idUser}/{price}")
+    public Boolean newArticle(@PathParam("label") String label,
                         @PathParam("marque") String marque,
                         @PathParam("description") String description,
-                        @PathParam("photo") String photo,
                         @PathParam("idCategorie") int idCategorie,
                         @PathParam("idUser") int idUser,
                         @PathParam("price") int price,
                         @Context HttpServletResponse servletResponse) throws IOException, SQLException {
-        Article article = new Article(label,marque, description,photo,idCategorie,idUser,price);
+        Article article = new Article(label,marque, description,"",idCategorie,idUser,price);
        return  articleDao.insertArticle(article);
     }
 
