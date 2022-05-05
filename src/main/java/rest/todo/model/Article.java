@@ -12,25 +12,28 @@ public class Article {
     private int idCategorie;
     private int idUser;
     private int price;
+    private int quantity;
 
     public Article() {
     }
 
-    public Article(int id, String label, String marque, String description, String photo, int idCategorie, int idUser, int price) {
+    public Article(int id, String label, String marque, String description, int quantity, String photo, int idCategorie, int idUser, int price) {
         this.id = id;
         this.label = label;
         this.marque = marque;
         this.description = description;
+        this.quantity=quantity;
         this.photo = photo;
         this.idCategorie = idCategorie;
         this.idUser = idUser;
         this.price = price;
     }
 
-    public Article(String label, String marque, String description, String photo, int idCategorie, int idUser, int price) {
+    public Article(String label, String marque, String description, int quantity,String photo, int idCategorie, int idUser, int price) {
         this.label = label;
         this.marque = marque;
         this.description = description;
+        this.quantity=quantity;
         this.photo = photo;
         this.idCategorie = idCategorie;
         this.idUser = idUser;
@@ -99,5 +102,13 @@ public class Article {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -43,9 +43,9 @@ public class CartsResources {
     }
 
     @GET
-    @Path("/delete/{idProduct}")
-    public boolean deleteArticleFromCart(@PathParam("idProduct") int id) throws  SQLException{
-        return cartDao.deleteFromCart(id);
+    @Path("/delete/{idProduct}/{idUser}")
+    public boolean deleteArticleFromCart(@PathParam("idProduct") int id,@PathParam("idUser") int idUser) throws  SQLException{
+        return cartDao.deleteFromCart(id,idUser);
     }
     @GET
     @Path("/deleteAll/{idUser}")

@@ -40,30 +40,32 @@ public class ArticlesResources {
         return articleList;
     }
     @GET
-    @Path("/update/{idArticle}/{label}/{marque}/{description}/{idCategorie}/{idUser}/{price}")
+    @Path("/update/{idArticle}/{label}/{marque}/{description}/{quantity}/{idCategorie}/{idUser}/{price}")
     @Produces({ MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML})
     public Article UpdateArticle( @PathParam("idArticle") int idArticle,
                                   @PathParam("label") String label,
                                   @PathParam("marque") String marque,
                                   @PathParam("description") String description,
+                                  @PathParam("quantity") int quantity,
                                   @PathParam("idCategorie") int idCategorie,
                                   @PathParam("idUser") int idUser,
                                   @PathParam("price") int price) throws SQLException {
-        Article article = new Article(label,marque,description,"",idCategorie,idUser,price);
+        Article article = new Article(label,marque,description,quantity,"",idCategorie,idUser,price);
         return articleDao.updateArticle(article,idArticle);
     }
 
     //Insertion
     @GET
-    @Path("/add/{label}/{marque}/{description}/{idCategorie}/{idUser}/{price}")
+    @Path("/add/{label}/{marque}/{description}/{quantity}/{idCategorie}/{idUser}/{price}")
     public Boolean newArticle(@PathParam("label") String label,
                         @PathParam("marque") String marque,
                         @PathParam("description") String description,
+                              @PathParam("quantity") int quantity,
                         @PathParam("idCategorie") int idCategorie,
                         @PathParam("idUser") int idUser,
                         @PathParam("price") int price,
                         @Context HttpServletResponse servletResponse) throws IOException, SQLException {
-        Article article = new Article(label,marque, description,"",idCategorie,idUser,price);
+        Article article = new Article(label,marque, description,quantity,"",idCategorie,idUser,price);
        return  articleDao.insertArticle(article);
     }
 
