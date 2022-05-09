@@ -22,7 +22,7 @@ public class Article {
         this.label = label;
         this.marque = marque;
         this.description = description;
-        this.quantity=quantity;
+        this.quantity = quantity;
         this.photo = photo;
         this.idCategorie = idCategorie;
         this.idUser = idUser;

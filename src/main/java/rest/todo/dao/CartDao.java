@@ -119,6 +119,7 @@ public class CartDao {
                 update.setInt(1,carts.get(0).getQuantity()+1);
                 update.executeUpdate();
             }
+
         }catch(Exception e){
             return false;
         }
@@ -147,6 +148,8 @@ public class CartDao {
                     PreparedStatement delete = CONNEXION.prepareStatement("delete from Cart where Cart.idProduct = " + idProduct + " and Cart.idUser = " + idUser);
                     delete.executeUpdate();
                 }
+
+
 
         }catch(Exception e){
             return false;
